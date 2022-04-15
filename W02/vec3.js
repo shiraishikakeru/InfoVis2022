@@ -68,9 +68,14 @@ class Vec3
         this.z = z;
     }
     
-    min(x, y, z)
+    min(v)
     {
-        const m = this.x < this.y ? this.x : this.y;
-        return m < this.z ? m : this.z;
+        const m = v.x < v.y ? v.x : v.y;
+        return m < v.z ? m : v.z;
+    }
+
+    max(x, y, z)
+    {
+        const m = this.x 
     }
 }
