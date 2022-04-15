@@ -1,4 +1,4 @@
-Vec3 = function( x, y, z )
+/*Vec3 = function( x, y, z )
 {
     this.x = x;
     this.y = y;
@@ -56,9 +56,9 @@ Vec3.prototype.cross = function( v )
 Vec3.prototype.length = function()
 {
     return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z );
-}
+}*/
 
-//task2
+
 class Vec3
 {
     //Constructor
@@ -92,13 +92,3 @@ class Vec3
         return this.sum() - this.max() - this.min();
     }
 }
-
-//task3
-Vec3.prototype.subVer = function(v1, v2)
-{
-    this.x = v1.x - v2.x;
-    this.y = v1.y - v2.y;
-    this.z = v1.z - v2.z;
-    return this;
-}
-    
