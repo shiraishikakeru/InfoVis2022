@@ -1,4 +1,4 @@
-Vec3 = function( x, y, z )
+/*Vec3 = function( x, y, z )
 {
     this.x = x;
     this.y = y;
@@ -56,4 +56,21 @@ Vec3.prototype.cross = function( v )
 Vec3.prototype.length = function()
 {
     return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z );
+}*/
+
+class Vec3
+{
+    //Constructor
+    constructor(x, y, z)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    
+    min(x, y, z)
+    {
+        const m = x < y ? x : y;
+        return m < z ? m : z
+    }
 }
