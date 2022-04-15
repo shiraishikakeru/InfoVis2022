@@ -3,10 +3,15 @@
 	<title>W02: Task 03</title>
     </head>
     <body>
-	<input type="number" value="input_number"/><input type="number" value="input_number"/><input type="number" value="input_number"/><br>
-    <input type="number" value="input_number"/><input type="number" value="input_number"/><input type="number" value="input_number"/><br>
-    <input type="number" value="input_number"/><input type="number" value="input_number"/><input type="number" value="input_number"/>
+	<input type="number" id="input_number00"/><input type="number" id="input_number01"/><input type="number" id="input_number02"/><br>
+    <input type="number" id="input_number10"/><input type="number" id="input_number11"/><input type="number" id="input_number12"/><br>
+    <input type="number" id="input_number20"/><input type="number" id="input_number21"/><input type="number" id="input_number22"/><br>
+    <input type="button" value="OK" id="ok"/>
 	<script>
+        document.getElementById("ok").addEventListener("click", function(){
+            var x0 = getElementById("input_number00");
+            document.write(x0);
+        });
 	</script>
     </body>
 </html>
