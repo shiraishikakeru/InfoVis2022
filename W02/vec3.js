@@ -80,5 +80,16 @@ class Vec3
         return m > this.z ? m : this.z;
     }
 
+    sum()
+    {
+        return this.x + this.y + this.z;
+    }
+
+
+    mid()
+    {
+        return this.sum() - this.max() - this.min();
+    }
+
     
 }
