@@ -29,21 +29,19 @@
             document.write(", y2=", y2);
             document.write(", z2=", z2 + "<br>");
 
-            document.write("step1:" + "<br>");
-
             var v0 = new Vec3(x0, y0, z0);
             var v1 = new Vec3(x1, y1, z1);
             var v2 = new Vec3(x2, y2, z2);
             
-            document.write("step2:" + "<br>");
+            var va = new Vec3(x0 - x1, y0 - y1, z0 - z1);
+            var vb = new Vec3(x1 - x2, y1 - y2, z1 - z2);
 
-            var v01 = new Vec3(x0 - x1, y0 - y1, z0 - z1);
-            var v12 = new Vec3(x1 - x2, y1 - y2, z1 - z2);
+            document.write(va.x);
+            document.write(vb.x + "<br>");
 
-            document.write("step3:" + "<br>");
+            var S = 1/2 * Math.sqrt((va.y*vb.z - va.z*vb.y)^2 + (va.z*vb.x - va.x*vb.z)^2 + (va.x*vb.y - va.y*vb.x)^2);
 
-            document.write(v01.x);
-            document.write(v12.x);
+            document.write(S);
 
         });
 	</script>
