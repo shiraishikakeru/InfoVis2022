@@ -72,6 +72,6 @@ class Vec3
     min(x, y, z)
     {
         const m = this.x < this.y ? this.x : this.y;
-        return m < this.z ? m : this.z
+        return m < this.z ? m : this.z;
     }
 }
