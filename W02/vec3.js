@@ -74,5 +74,11 @@ class Vec3
         return m < this.z ? m : this.z;
     }
 
+    max()
+    {
+        const m = this.x > this.y ? this.x : this.y;
+        return m > this.z ? m : this.z;
+    }
+
     
 }
