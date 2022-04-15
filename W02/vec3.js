@@ -57,14 +57,3 @@ Vec3.prototype.length = function()
 {
     return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z );
 }
-
-class Vec3
-{
-    //Constructor
-    constructor(x, y, z)
-    {
-        this.x = x;
-        this.y = y;
-        this.z = z;
-    }
-}
