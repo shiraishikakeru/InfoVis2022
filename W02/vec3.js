@@ -66,7 +66,6 @@ class Vec3
         this.x = x;
         this.y = y;
         this.z = z;
-        return this;
     }
     
     min(x, y, z)
