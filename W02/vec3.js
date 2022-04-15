@@ -66,21 +66,20 @@ class Vec3
         this.x = x;
         this.y = y;
         this.z = z;
-    }
+        
+        add(v)
+        {
+            this.x += v.x;
+            this.y += v.y;
+            this.z += v.z;
+            return this;
+        }
+        min()
+        {
+            const m = this.x < this.y ? this.x : this.y;
+            return m < this.z ? m : this.z;
+        }
     
-    add(v)
-    {
-        this.x += v.x;
-        this.y += v.y;
-        this.z += v.z;
-        return this;
     }
-
-    min()
-    {
-        const m = this.x < this.y ? this.x : this.y;
-        return m < this.z ? m : this.z;
-    }
-
     
 }
