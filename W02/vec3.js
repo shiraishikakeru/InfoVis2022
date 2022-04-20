@@ -58,6 +58,7 @@ Vec3.prototype.length = function()
     return Math.sqrt( this.x * this.x + this.y * this.y + this.z * this.z );
 }*/
 
+
 class Vec3
 {
     //Constructor
@@ -67,14 +68,6 @@ class Vec3
         this.y = y;
         this.z = z;
     }
-    
-    add(v)
-    {
-        this.x += v.x;
-        this.y += v.y;
-        this.z += v.z;
-        return this;
-    }
 
     min()
     {
@@ -82,5 +75,20 @@ class Vec3
         return m < this.z ? m : this.z;
     }
 
-    
+    max()
+    {
+        const m = this.x > this.y ? this.x : this.y;
+        return m > this.z ? m : this.z;
+    }
+
+    sum()
+    {
+        return this.x + this.y + this.z;
+    }
+
+
+    mid()
+    {
+        return this.sum() - this.max() - this.min();
+    }
 }
