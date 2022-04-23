@@ -23,7 +23,7 @@
          .enter()
          .append("text")
          .attr("x", function(d){ return d.lx; })
-         .attr("y", function(d){ return d.y; })
+         .attr("y", function(d){ return d.ly; })
          .attr("w", function(d){ return d.w; })
          .attr("h", function(d){ return d.h; })
          .text(function(d) { return d.label; });
