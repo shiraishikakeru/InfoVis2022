@@ -13,7 +13,7 @@
          .enter()
          .append("rect")
          .attr("x", function(d){ return d.x; })
-         .attr("y", function(d,i){ return d.x + i * ( d.h + d.x ); })
+         .attr("y", function(d){ return d.y; })
          .attr("width", function(d){ return d.w; })
          .attr("height", function(d){ return d.h; })
          .style("fill", function(d){ return d.c; });
