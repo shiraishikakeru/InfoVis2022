@@ -8,11 +8,7 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
             height: 256,
             margin: {top:10, right:10, bottom:20, left:10}
         };
-
-
-
-
-        
+    
         const scatter_plot = new ScatterPlot( config, data );
         scatter_plot.update();
     })
@@ -93,5 +89,8 @@ class ScatterPlot {
 
         self.xaxis_group
             .call( self.xaxis );
+
+        self.yaxis_group
+            .call( self.yaxis );
     }
 }
