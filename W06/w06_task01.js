@@ -1,4 +1,4 @@
-d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/data.csv")
+d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
     .then( data => {
         data.forEach( d => { d.x = +d.x; d.y = +d.y; });
 
@@ -9,6 +9,10 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/data.csv")
             margin: {top:10, right:10, bottom:20, left:10}
         };
 
+
+
+
+        
         const scatter_plot = new ScatterPlot( config, data );
         scatter_plot.update();
     })
