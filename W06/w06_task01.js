@@ -9,6 +9,10 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
             margin: {top:10, right:10, bottom:20, left:10}
         };
 
+
+
+
+        
         const scatter_plot = new ScatterPlot( config, data );
         scatter_plot.update();
     })
@@ -51,7 +55,14 @@ class ScatterPlot {
         self.xaxis = d3.axisBottom( self.xscale )
             .ticks(6);
 
+        self.yaxis = d3.axisLeft( self.yscale )
+            .ticks(6);
+
+
         self.xaxis_group = self.chart.append('g')
+            .attr('transform', `translate(0, ${self.inner_height})`);
+        
+        self.yaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`);
     }
 
