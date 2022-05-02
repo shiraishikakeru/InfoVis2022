@@ -58,7 +58,7 @@ class ScatterPlot {
             .attr('transform', `translate(0, ${self.inner_height})`);
 
         self.yaxis_group = self.chart.append('g')
-            .attr('transform', `translate(0, ${self.inner_width})`);
+            .attr('transform', `translate(0, 0)`);
             
     }
 
@@ -71,7 +71,7 @@ class ScatterPlot {
 
         const ymin = d3.min( self.data, d => d.y );
         const ymax = d3.max( self.data, d => d.y );
-        self.yscale.domain( [0, ymax] );
+        self.yscale.domain( [ymax, 0] );
 
         self.render();
     }
