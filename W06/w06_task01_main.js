@@ -4,9 +4,9 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
 
         var config = {
             parent: '#drawing_region',
-            width: 350,
-            height: 300,
-            margin: {top:10, right:50, bottom:20, left:50}
+            width: 300,
+            height: 256,
+            margin: {top:20, right:30, bottom:20, left:30}
         };
     
         const scatter_plot = new ScatterPlot( config, data );
@@ -21,8 +21,8 @@ class ScatterPlot {
     constructor( config, data ) {
         this.config = {
             parent: config.parent,
-            width: config.width || 300,
-            height: config.height || 300,
+            width: config.width || 256,
+            height: config.height || 256,
             margin: config.margin || {top:10, right:10, bottom:10, left:10}
         }
         this.data = data;
@@ -39,7 +39,7 @@ class ScatterPlot {
         self.chart = self.svg.append('g')
             .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`);
 
-        self.inner_width = self.config.width - self.config.margin.left;
+        self.inner_width = self.config.width - self.config.margin.left - self.config.margin.right;
         self.inner_height = self.config.height - self.config.margin.top - self.config.margin.bottom;
 
         self.xscale = d3.scaleLinear()
