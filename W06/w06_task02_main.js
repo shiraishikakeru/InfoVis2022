@@ -56,6 +56,10 @@ class ScatterPlot {
 
         self.xaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`)
+            .append("text")
+            .attr("text-anchor", "middle")
+            .attr("font-size", "10pt")
+            .attr("font-weight", "middle")
             .text("xlabel");
 
         self.yaxis_group = self.chart.append('g')
