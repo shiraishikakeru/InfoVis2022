@@ -4,8 +4,8 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
 
         var config = {
             parent: '#drawing_region',
-            width: 350,
-            height: 300,
+            width: 256,
+            height: 256,
             margin: {top:10, right:10, bottom:20, left:10}
         };
     
@@ -21,8 +21,8 @@ class ScatterPlot {
     constructor( config, data ) {
         this.config = {
             parent: config.parent,
-            width: config.width || 200,
-            height: config.height || 200,
+            width: config.width || 256,
+            height: config.height || 256,
             margin: config.margin || {top:10, right:10, bottom:10, left:10}
         }
         this.data = data;
