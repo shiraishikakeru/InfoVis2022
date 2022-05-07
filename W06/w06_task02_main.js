@@ -37,7 +37,11 @@ class ScatterPlot {
             .attr('height', self.config.height);
 
         self.chart = self.svg.append('g')
-            .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`);
+            .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`)
+            .append("text")
+            .attr("width", self.inner_width/2)
+            .attr("height", self.inner_height)
+            .text("xlabel");
 
         self.inner_width = self.config.width - self.config.margin.left - self.config.margin.right;
         self.inner_height = self.config.height - self.config.margin.top - self.config.margin.bottom;
@@ -49,18 +53,10 @@ class ScatterPlot {
             .range( [0, self.inner_height] );
 
         self.xaxis = d3.axisBottom( self.xscale )
-            .ticks(8)
-            .append("text")
-            .attr("width", self.inner_width/2)
-            .attr("height", self.inner_height)
-            .text("xlabel");
+            .ticks(8);
 
         self.yaxis = d3.axisLeft( self.yscale )
-            .ticks(6)
-            .append("text")
-            .attr("width", 5)
-            .attr("height", self.inner_height/2)
-            .text("ylabel");
+            .ticks(6);
 
         self.xaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`)
