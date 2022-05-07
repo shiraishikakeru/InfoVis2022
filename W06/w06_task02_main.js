@@ -61,18 +61,21 @@ class ScatterPlot {
             .attr('transform', `translate(0, 0)`)
         
         self.xlabel = self.chart.append('g')
+            .attr('transform', 'translate(0, ${self.inner_height})')
             .append("text")
             .attr("width", 300)
             .attr("height", 10)
             .text("xlabels");
 
         self.ylabel = self.chart.append('g')
+            .attr('transform', 'translate(0, 0)')
             .append("text")
             .attr("width", 10)
             .attr("height", 200)
             .text("ylabels");
         
         self.tytle = self.chart.append('g')
+            .attr('transform', 'translate(0, 0)')
             .append("text")
             .attr("width", 300)
             .attr("height", 300)
