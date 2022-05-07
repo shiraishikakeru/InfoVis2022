@@ -37,11 +37,7 @@ class ScatterPlot {
             .attr('height', self.config.height);
 
         self.chart = self.svg.append('g')
-            .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`)
-            .append("text")
-            .attr("width", 220)
-            .attr("height", 300)
-            .text("xlabel");
+            .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`);
 
         self.inner_width = self.config.width - self.config.margin.left - self.config.margin.right;
         self.inner_height = self.config.height - self.config.margin.top - self.config.margin.bottom;
@@ -63,6 +59,12 @@ class ScatterPlot {
 
         self.yaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, 0)`)
+        
+        self.xlabel = self.chart.append('g')
+            .append("text")
+            .attr("width", 220)
+            .attr("height", 300)
+            .text("xlabels");
             
     }
 
