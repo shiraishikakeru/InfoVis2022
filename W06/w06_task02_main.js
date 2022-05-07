@@ -63,7 +63,7 @@ class ScatterPlot {
         self.xlabel = self.chart.append('g')
             .attr('transform', `translate(${self.inner_width/2}, ${self.inner_height + self.config.margin.top})`)
             .append("text")
-            .attr("width", 300)
+            .attr("width", 10)
             .attr("height", 10)
             .text("xlabel");
 
@@ -71,7 +71,7 @@ class ScatterPlot {
             .attr('transform', `translate(0, ${self.inner_height/2})`)
             .append("text")
             .attr("width", 10)
-            .attr("height", 200)
+            .attr("height", 10)
             .attr('transform', 'rotate(-90)')
             .text("ylabel");
         
