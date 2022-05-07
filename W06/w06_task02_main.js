@@ -4,8 +4,8 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
 
         var config = {
             parent: '#drawing_region',
-            width: 300,
-            height: 256,
+            width: 350,
+            height: 350,
             margin: {top:50, right:60, bottom:50, left:60}
         };
     
