@@ -4,8 +4,8 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
 
         var config = {
             parent: '#drawing_region',
-            width: 500,
-            height: 500,
+            width: 400,
+            height: 400,
             margin: {top:80, right:10, bottom:100, left:100}
         };
     
@@ -75,12 +75,15 @@ class ScatterPlot {
             .attr('transform', 'rotate(-90)')
             .text("ylabel");
         
-        self.tytle = self.svg.append('g')
-            .attr('transform', `translate(${self.config.margin.left + self.config.width/2}, 20)`)
-            .append("text")
-            .attr("width", 10)
-            .attr("height", 10)
-            .text("Tytle");
+        //self.tytle = self.svg.append('g')
+        //    .attr('transform', `translate(${self.config.margin.left + self.config.width/2}, 20)`)
+        //    .append("text")
+        //    .attr("width", 10)
+        //    .attr("height", 10)
+        //    .attr("text-anchor", "middle")
+        //    .attr("font-size", "10pt")
+        //    .attr("font-weight", "middle")
+        //    .text("Tytle");
         
             
     }
