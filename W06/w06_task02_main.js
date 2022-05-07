@@ -56,13 +56,9 @@ class ScatterPlot {
 
         self.xaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`)
-            .append("text")
-            .text("xlabel");
 
         self.yaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, 0)`)
-            .append("text")
-            .text("ylabel");
             
     }
 
@@ -92,9 +88,13 @@ class ScatterPlot {
             .attr("r", d => d.r );
 
         self.xaxis_group
-            .call( self.xaxis );
+            .call( self.xaxis )
+            .append("text")
+            .text("xlabel");
 
         self.yaxis_group
-            .call( self.yaxis );
+            .call( self.yaxis )
+            .append("text")
+            .text("ylabel");
     }
 }
