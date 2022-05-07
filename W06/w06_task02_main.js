@@ -61,19 +61,26 @@ class ScatterPlot {
             .attr('transform', `translate(0, 0)`)
         
         self.xlabel = self.svg.append('g')
-            .attr('transform', `translate(${self.inner_width/2}, ${self.inner_height + self.config.margin.top})`)
+            .attr('transform', `translate(${self.config.width/2}, ${self.config.height + self.config.margin.top})`)
             .append("text")
             .attr("width", 10)
             .attr("height", 10)
             .text("xlabel");
 
         self.ylabel = self.svg.append('g')
-            .attr('transform', `translate(0, ${self.inner_height/2})`)
+            .attr('transform', `translate(20, ${self.config.height/2})`)
             .append("text")
             .attr("width", 10)
             .attr("height", 10)
             .attr('transform', 'rotate(-90)')
             .text("ylabel");
+        
+        self.tytle = self.svg.append('g')
+            .attr('transform', `translate(${self.config.width/2}, 20)`)
+            .append("text")
+            .attr("width", 10)
+            .attr("height", 10)
+            .text("Tytle");
         
             
     }
