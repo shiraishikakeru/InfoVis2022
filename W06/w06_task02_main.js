@@ -49,10 +49,18 @@ class ScatterPlot {
             .range( [0, self.inner_height] );
 
         self.xaxis = d3.axisBottom( self.xscale )
-            .ticks(8);
+            .ticks(8)
+            .append("text")
+            .attr("x", self.inner_width/2)
+            .attr("y", self.inner_height)
+            .text("xlabel");
 
         self.yaxis = d3.axisLeft( self.yscale )
-            .ticks(6);
+            .ticks(6)
+            .append("text")
+            .attr("x", 5)
+            .attr("y", self.inner_height/2)
+            .text("ylabel");
 
         self.xaxis_group = self.chart.append('g')
             .attr('transform', `translate(0, ${self.inner_height})`)
@@ -88,17 +96,9 @@ class ScatterPlot {
             .attr("r", d => d.r );
 
         self.xaxis_group
-            .call( self.xaxis )
-            .append("text")
-            .attr("x", self.inner_width/2)
-            .attr("y", self.inner_height)
-            .text("xlabel");
+            .call( self.xaxis );
 
         self.yaxis_group
-            .call( self.yaxis )
-            .append("text")
-            .attr("x", 5)
-            .attr("y", self.inner_height/2)
-            .text("ylabel");
+            .call( self.yaxis );
     }
 }
