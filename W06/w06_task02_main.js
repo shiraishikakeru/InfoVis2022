@@ -4,8 +4,8 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
 
         var config = {
             parent: '#drawing_region',
-            width: 400,
-            height: 400,
+            width: 500,
+            height: 500,
             margin: {top:80, right:10, bottom:100, left:100}
         };
     
@@ -61,7 +61,7 @@ class ScatterPlot {
             .attr('transform', `translate(0, 0)`)
         
         self.xlabel = self.svg.append('g')
-            .attr('transform', `translate(${self.config.width/2}, ${self.config.height + self.config.margin.top + self.config.margin.bottom/2})`)
+            .attr('transform', `translate(${self.config.margin.left + self.config.width/2}, ${self.config.height + self.config.margin.top + self.config.margin.bottom/2})`)
             .append("text")
             .attr("width", 10)
             .attr("height", 10)
@@ -76,7 +76,7 @@ class ScatterPlot {
             .text("ylabel");
         
         self.tytle = self.svg.append('g')
-            .attr('transform', `translate(${self.config.width/2}, 20)`)
+            .attr('transform', `translate(${self.config.margin.left + self.config.width/2}, 20)`)
             .append("text")
             .attr("width", 10)
             .attr("height", 10)
