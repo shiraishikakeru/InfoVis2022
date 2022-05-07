@@ -90,11 +90,15 @@ class ScatterPlot {
         self.xaxis_group
             .call( self.xaxis )
             .append("text")
+            .attr("width", self.inner_width/2)
+            .attr("height", self.inner_height)
             .text("xlabel");
 
         self.yaxis_group
             .call( self.yaxis )
             .append("text")
+            .attr("width", 5)
+            .attr("height", self.inner_height/2)
             .text("ylabel");
     }
 }
