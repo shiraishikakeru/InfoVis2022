@@ -6,7 +6,7 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task1.csv")
             parent: '#drawing_region',
             width: 400,
             height: 400,
-            margin: {top:80, right:10, bottom:100, left:100}
+            margin: {top:100, right:10, bottom:100, left:100}
         };
     
         const scatter_plot = new ScatterPlot( config, data );
@@ -81,7 +81,7 @@ class ScatterPlot {
             .attr("width", 10)
             .attr("height", 10)
             .attr("text-anchor", "middle")
-            .attr("font-size", "30pt")
+            .attr("font-size", "20pt")
             .attr("font-weight", "middle")
             .text("Tytle");
         
