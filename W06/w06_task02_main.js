@@ -39,8 +39,8 @@ class ScatterPlot {
         self.chart = self.svg.append('g')
             .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`)
             .append("text")
-            .attr("width", self.inner_width/2)
-            .attr("height", self.inner_height)
+            .attr("width", 220)
+            .attr("height", 300)
             .text("xlabel");
 
         self.inner_width = self.config.width - self.config.margin.left - self.config.margin.right;
