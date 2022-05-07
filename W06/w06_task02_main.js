@@ -62,9 +62,21 @@ class ScatterPlot {
         
         self.xlabel = self.chart.append('g')
             .append("text")
-            .attr("width", 220)
-            .attr("height", 300)
+            .attr("width", 300)
+            .attr("height", 10)
             .text("xlabels");
+
+        self.ylabel = self.chart.append('g')
+            .append("text")
+            .attr("width", 10)
+            .attr("height", 200)
+            .text("ylabels");
+        
+        self.tytle = self.chart.append('g')
+            .append("text")
+            .attr("width", 300)
+            .attr("height", 300)
+            .text("tytle");
             
     }
 
