@@ -21,8 +21,8 @@ class ScatterPlot {
     constructor( config, data ) {
         this.config = {
             parent: config.parent,
-            width: config.width || 300,
-            height: config.height || 256,
+            width: config.width || 500,
+            height: config.height || 500,
             margin: config.margin || {top:20, right:30, bottom:20, left:30}
         }
         this.data = data;
