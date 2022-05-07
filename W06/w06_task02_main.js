@@ -68,7 +68,7 @@ class ScatterPlot {
             .text("xlabel");
 
         self.ylabel = self.chart.append('g')
-            attr('transform', `translate(0, 0)`)
+            .attr('transform', `translate(0, 0)`)
             .append("text")
             .attr("width", 10)
             .attr("height", 200)
