@@ -51,15 +51,15 @@ class ScatterPlot {
         self.xaxis = d3.axisBottom( self.xscale )
             .ticks(8)
             .append("text")
-            .attr("x", self.inner_width/2)
-            .attr("y", self.inner_height)
+            .attr("width", self.inner_width/2)
+            .attr("height", self.inner_height)
             .text("xlabel");
 
         self.yaxis = d3.axisLeft( self.yscale )
             .ticks(6)
             .append("text")
-            .attr("x", 5)
-            .attr("y", self.inner_height/2)
+            .attr("width", 5)
+            .attr("height", self.inner_height/2)
             .text("ylabel");
 
         self.xaxis_group = self.chart.append('g')
