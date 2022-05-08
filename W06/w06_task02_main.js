@@ -76,13 +76,13 @@ class ScatterPlot {
             .text("ylabel");
         
         self.tytle = self.svg.append('g')
-            .attr('transform', `translate(${self.config.margin.left + self.inner_width/2}, 20)`)
+            .attr('transform', `translate(${self.config.margin.left + self.inner_width/2}, ${self.config.margin.top/2})`)
             .append("text")
             .attr("width", 10)
             .attr("height", 10)
             .attr("text-anchor", "middle")
             .attr("font-size", "20pt")
-            .attr("font-weight", "middle")
+            .attr("font-weight", "bold")
             .text("Tytle");
         
             
