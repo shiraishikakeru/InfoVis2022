@@ -61,7 +61,7 @@ class ScatterPlot {
             .attr('transform', `translate(0, 0)`)
         
         self.xlabel = self.svg.append('g')
-            .attr('transform', `translate(${self.config.margin.left + self.inner_width/2}, 350)`)
+            .attr('transform', `translate(${self.config.margin.left + self.inner_width/2}, ${self.config.width - self.config.margin.bottom/2})`)
             .append("text")
             .text("time");
 
