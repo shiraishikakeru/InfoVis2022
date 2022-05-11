@@ -1,6 +1,6 @@
 d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W08/w08_task01.csv")
     .then( data => {
-        data.forEach( d => { d.w = +d.w; d.labal = +d.labal; });
+        data.forEach( d => { d.value = +d.value; d.labal = +d.labal; });
 
         var config = {
             parent: '#drawing_region',
@@ -98,12 +98,10 @@ class BarChart {
         let self = this;
     
         const space = 10;
-        const xmin = d3.min( self.data, d => d.w ) - space;
-        const xmax = d3.max( self.data, d => d.w ) + space;
+        const xmin = d3.min( self.data, d => d.value ) - space;
+        const xmax = d3.max( self.data, d => d.value ) + space;
         self.xscale.domain([0, xmax]);
     
-        const ymin = d3.min( self.data, d => d.y ) - space;
-        const ymax = d3.max( self.data, d => d.y ) + space;
         self.yscale.domain(self.data.map(d => d.label)).paddingInner(0.1);
     
         self.render();
@@ -118,7 +116,7 @@ class BarChart {
             .append("rect")
             .attr("x", 0)
             .attr("y", d => self.yscale(d.label) )
-            .attr("width", d => self.xscale(d.w))
+            .attr("width", d => self.xscale(d.value))
             .attr("height", self.yscale.bandwidth())
     
         self.xaxis_group
