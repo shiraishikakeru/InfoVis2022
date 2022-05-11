@@ -117,7 +117,7 @@ class BarChart {
             .enter()
             .append("rect")
             .attr("x", 0)
-            .attr("y", d => self.yscale( d.label ) )
+            .attr("y", d => self.yscale(d.label) )
             .attr("width", d => self.xscale(d.w))
             .attr("height", self.yscale.bandwidth())
     
