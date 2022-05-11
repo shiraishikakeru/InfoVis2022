@@ -1,4 +1,4 @@
-d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W04/w04_task2.csv")
+d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W08/w08_task01.csv")
     .then( data => {
         data.forEach( d => { d.w = +d.w; d.labal = +d.labal; });
 
