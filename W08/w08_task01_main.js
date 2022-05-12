@@ -1,6 +1,6 @@
 d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W08/w08_task01.csv")
     .then( data => {
-        data.forEach( d => { d.value = +d.value; d.labal = +d.labal; });
+        data.forEach( d => { d.value = +d.value; d.label = d.label; });
 
         var config = {
             parent: '#drawing_region',
