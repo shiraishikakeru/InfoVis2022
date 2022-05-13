@@ -102,7 +102,7 @@ class LineChart {
             .attr('cx', self.line.x())
             .attr('cy', self.line.y())
             .attr('r', 5)
-            .attr('fill', '#000');
+            .attr('fill', 'red');
         
         
         self.xaxis_group
