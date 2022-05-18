@@ -150,6 +150,7 @@ class BarChart {
 
         self.chart.selectAll("rect")
             .attr("fill", bar_color);
+            
         self.xaxis_group
             .call( self.xaxis );
     
