@@ -9,11 +9,39 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W10/w10_task01.csv")
             margin: {top:50, right:10, bottom:50, left:100},
             title: 'Task1',
             xlabel: 'Xlabel',
-            ylabel: 'Ylabel'
+            ylabel: 'Ylabel',
         };
 
         const bar_chart = new BarChart( config, data );
         bar_chart.update();
+        d3.select('#reverse')
+            .on('click', d => {
+                data.reverse();
+                bar_chart.update();
+        });
+        d3.select('#ascend')
+            .on('click', d => {
+                data.sort(function(a, b){
+                    if(a.value > b.value){
+                        return 1;
+                    }else{
+                        return -1;
+                    }
+                })
+                bar_chart.update();
+            });
+        d3.select('#descend')
+            .on('click', d => {
+            data.sort(function(a, b){
+                if(a.value < b.value){
+                    return 1;
+                }else{
+                    return -1;
+                }
+            })
+            bar_chart.update();
+        });
+
     })
     .catch( error => {
         console.log( error );
@@ -29,7 +57,7 @@ class BarChart {
             margin: config.margin || {top:50, right:10, bottom:50, left:100},
             title: config.title || '',
             xlabel: config.xlabel || '',
-            ylabel: config.ylabel || ''
+            ylabel: config.ylabel || '',
         }
         this.data = data;
         this.init();
@@ -41,7 +69,7 @@ class BarChart {
         self.svg = d3.select( self.config.parent )
             .attr('width', self.config.width)
             .attr('height', self.config.height);
-    
+                
         self.chart = self.svg.append('g')
             .attr('transform', `translate(${self.config.margin.left}, ${self.config.margin.top})`);
     
@@ -91,7 +119,7 @@ class BarChart {
             .attr('x', -(self.config.height / 2))
             .attr('text-anchor', 'middle')
             .attr('dy', '1em')
-            .text( self.config.ylabel );
+            .text( self.config.ylabel );        
     }
     
     update() {
@@ -103,26 +131,29 @@ class BarChart {
         self.xscale.domain([0, xmax]);
     
         self.yscale.domain(self.data.map(d => d.label)).paddingInner(0.1);
+
+        self.chart.selectAll("rect")
+            .data(self.data)
+            .join("rect")
+            .transition().duration(1000)
+            .attr("x", 0)
+            .attr("y", d => self.yscale(d.label) )
+            .attr("width", d => self.xscale(d.value))
+            .attr("height", self.yscale.bandwidth())
     
         self.render();
     }
     
     render() {
         let self = this;
-    
+        const bar_color = "steelblue"
+
         self.chart.selectAll("rect")
-            .data(self.data)
-            .enter()
-            .append("rect")
-            .attr("x", 0)
-            .attr("y", d => self.yscale(d.label) )
-            .attr("width", d => self.xscale(d.value))
-            .attr("height", self.yscale.bandwidth())
-    
+            .attr("fill", bar_color);
         self.xaxis_group
             .call( self.xaxis );
     
         self.yaxis_group
-            .call( self.yaxis );
+            .call( self.yaxis );        
     }
 }
