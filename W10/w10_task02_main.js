@@ -104,7 +104,7 @@ class ScatterPlot {
 
     render() {
         let self = this;
-        const point_color = 'steelblue'
+        const point_color = 'red'
 
         self.chart.selectAll('circle')
             .data(self.data)
@@ -130,6 +130,10 @@ class ScatterPlot {
             .on('mouseleave', () => {
                 d3.select('#tooltip')
                 .style('opacity', 0);
+            })
+            .on('click', function(){ //クリックで色変更
+                d3.select(this)
+                .style('fill', point_color);
             })
 
         self.xaxis_group
