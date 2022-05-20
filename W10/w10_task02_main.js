@@ -1,12 +1,15 @@
 d3.csv("https://shiraishikakeru.github.io/InfoVis2022/W10/w10_task02.csv")
     .then( data => {
-        data.forEach( d => { d.x = +d.x; d.y = +d.y; });
+        data.forEach( d => { d.x = +d.x; d.y = +d.y; d.label = d.label });
 
         var config = {
             parent: '#drawing_region',
             width: 400,
             height: 400,
-            margin: {top:100, right:10, bottom:100, left:100}
+            margin: {top:100, right:10, bottom:100, left:100},
+            title: 'Task 02',
+            xlabel: 'xlabel',
+            ylabel: 'ylabel'
         };
     
         const scatter_plot = new ScatterPlot( config, data );
@@ -23,7 +26,10 @@ class ScatterPlot {
             parent: config.parent,
             width: config.width || 500,
             height: config.height || 500,
-            margin: config.margin || {top:20, right:30, bottom:20, left:30}
+            margin: config.margin || {top:20, right:30, bottom:20, left:30},
+            title: config.title ||'',
+            xlabel: config.xlabel ||'',
+            ylabel: config.ylabel ||''
         }
         this.data = data;
         this.init();
@@ -62,22 +68,22 @@ class ScatterPlot {
         
         self.xlabel = self.svg.append('g')
             .attr('transform', `translate(${self.config.margin.left + self.inner_width/2}, ${self.config.width - self.config.margin.bottom/2})`)
-            .append("text")
-            .text("time");
+            .append('text')
+            .text(self.config.xlabel);
 
         self.ylabel = self.svg.append('g')
             .attr('transform', `translate(${self.config.margin.left/2}, ${self.config.height/2})`)
-            .append("text")
+            .append('text')
             .attr('transform', 'rotate(-90)')
-            .text("data");
+            .text(self.config.ylabel);
         
         self.tytle = self.svg.append('g')
             .attr('transform', `translate(${self.config.margin.left + self.inner_width/2}, ${self.config.margin.top/2})`)
-            .append("text")
-            .attr("text-anchor", "middle")
-            .attr("font-size", "20pt")
-            .attr("font-weight", "bold")
-            .text("Task02");
+            .append('text')
+            .attr('text-anchor', 'middle')
+            .attr('font-size', '20pt')
+            .attr('font-weight', 'bold')
+            .text(self.config.title);
         
             
     }
@@ -98,19 +104,40 @@ class ScatterPlot {
 
     render() {
         let self = this;
+        const point_color = 'steelblue'
 
-        self.chart.selectAll("circle")
+        self.chart.selectAll('circle')
             .data(self.data)
             .enter()
-            .append("circle")
-            .attr("cx", d => self.xscale( d.x ) )
-            .attr("cy", d => self.yscale( d.y ) )
-            .attr("r", d => d.r );
+            .append('circle')
+            .attr('cx', d => self.xscale( d.x ) )
+            .attr('cy', d => self.yscale( d.y ) )
+            .attr('r', d => d.r )
+        
+        self.chart.selectAll('circle')
+            .data(self.data)
+            .on('mouseover', (e,d) =>{
+                d3.select('#tooltip')
+                .style('opacity', 1)
+                .html(`<div class="tooltip-label">${d.label}</div>(${d.x}, ${d.y})`)
+            })
+            .on('mousemove', (e) => {
+                const padding = 10;
+                d3.select('#tooltip')
+                .style('left', (e.pageX + padding) + 'px')
+                .style('top', (e.pageY + padding) + 'px');
+            })
+            .on('mouseleave', () => {
+                d3.select('#tooltip')
+                .style('opacity', 0);
+            })
 
         self.xaxis_group
             .call( self.xaxis );
 
         self.yaxis_group
             .call( self.yaxis );
+        
+        
     }
 }
