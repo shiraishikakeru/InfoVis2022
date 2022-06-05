@@ -3,7 +3,7 @@ let line_chart;
 let bar_chart;
 let filter = [];
 
-d3.csv("./data_final.csv")
+d3.csv("https://shiraishikakeru.github.io/InfoVis2022/FinalTask/data_final.csv")
     .then( data => {
         input_data = data;
         input_data.forEach( d => {

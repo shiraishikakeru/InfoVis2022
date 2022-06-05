@@ -2,9 +2,9 @@ class LineChart {
     constructor (config, data) {
         this.config = {
             parent: config.parent,
-            width: config.width || 256,
-            height: config.height || 256,
-            margin: config.margin || {top:10, right:10, bottom:10, left:10},
+            width: config.width || 512,
+            height: config.height || 512,
+            margin: config.margin || {top:10, right:10, bottom:50, left:90},
             title: config.title || '',
             xlabel: config.xlabel || '',
             ylabel: config.ylabel || ''
@@ -73,23 +73,21 @@ class LineChart {
     update() {
         let self = this;
 
-        const space = 5;
-        const xmin = d3.min(self.data, d => d.x) - space;
-        const xmax = d3.max(self.data, d => d.x) + space;
+        self.cvalue = d => d.kind;
+        self.xvalue = d => d.date;
+        self.yvalue = d => d.value;
+
+        const xmin = d3.min(self.data, self.xvalue);
+        const xmax = d3.max(self.data, self.xvalue);
         self.xscale.domain([xmin, xmax]);
 
-        const ymin = d3.min(self.data, d => d.y) - space;
-        const ymax = d3.max(self.data, d => d.y) + space;
+        const ymin = d3.min(self.data, self.yvalue);
+        const ymax = d3.max(self.data, self.yvalue);
         self.yscale.domain([ymax, ymin]);
 
         self.line = d3.line()
-            .x( d => self.xscale(d.x) )
-            .y( d => self.yscale(d.y) );
-
-        self.area = d3.area()
-            .x( d => self.xscale(d.x) )
-            .y1( d => self.yscale(d.y) )
-            .y0( self.inner_height );
+            .x( d => self.xscale(d.date) )
+            .y( d => self.yscale(d.value) );
 
         self.render();
     }
@@ -97,22 +95,13 @@ class LineChart {
     render() {
         let self = this;
 
-        const area_color = 'mistyrose';
-        self.chart.append("path")
-            .attr('d', self.area(self.data))
-            .attr('stroke', area_color)
-            .attr('fill', area_color);
-
         const line_width = 3;
-        const line_color = 'firebrick';
         self.chart.append("path")
             .attr('d', self.line(self.data))
-            .attr('stroke', line_color)
-            .attr('stroke-width', line_width)
-            .attr('fill', 'none');
+            .attr('stroke', d => self.config.cscale(self.cvalue(d)))
+            .attr('stroke-width', line_width);
 
         const circle_radius = 5;
-        const circle_color = 'firebrick';
         self.chart.selectAll("circle")
             .data(self.data)
             .enter()
@@ -120,7 +109,7 @@ class LineChart {
             .attr('cx', self.line.x())
             .attr('cy', self.line.y())
             .attr('r', circle_radius)
-            .attr('fill', circle_color);
+            .attr('fill', d => self.config.cscale(self.cvalue(d)));
 
         self.xaxis_group.call(self.xaxis);
         self.yaxis_group.call(self.yaxis);
