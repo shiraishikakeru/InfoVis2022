@@ -2,9 +2,9 @@ class BarChart {
     constructor (config, data) {
         this.config = {
             parent: config.parent,
-            width: config.width || 512,
-            height: config.height || 512,
-            margin: config.margin || {top:10, right:10, bottom:50, left:90},
+            width: config.width || 256,
+            height: config.height || 256,
+            margin: config.margin || {top:10, right:10, bottom:10, left:10},
             xlabel: config.xlabel || '',
             ylabel: config.ylabel || '',
             cscale: config.cscale
@@ -35,7 +35,7 @@ class BarChart {
             .range([self.inner_height, 0]);
 
         self.xaxis = d3.axisBottom(self.xscale)
-            .ticks(['Cafe/Sweets','Family-restaurant/Fast-food','Bar'])
+            .ticks(['setosa','versicolor','virginica'])
             .tickSizeOuter(0);
 
         self.yaxis = d3.axisLeft(self.yscale)
@@ -69,8 +69,8 @@ class BarChart {
         let self = this;
 
         const data_map = d3.nest()
-            .key(function(d){ return d.kind; })
-            .rollup(function(v){ return d3.sum(v, function(d){ return d.value;});})
+            .key(function(d){ return d.region; })
+            .rollup(function(v){ return d3.sum(v, function(d){ return d.infected;});})
             .entries(self.data);
         self.aggregated_data = Array.from(data_map);
 
@@ -81,13 +81,12 @@ class BarChart {
         const items = self.aggregated_data.map( self.xvalue );
         self.xscale.domain(items);
 
-        const ymin = d3.min( self.aggregated_data, self.yvalue );
+        const ymin = 0;
         const ymax = d3.max( self.aggregated_data, self.yvalue );
-        self.yscale.domain([ymin-100, ymax]);
+        self.yscale.domain([ymin, ymax]);
 
         self.render();
     }
-
 
     render() {
         let self = this;
