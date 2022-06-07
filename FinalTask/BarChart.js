@@ -83,7 +83,7 @@ class BarChart {
 
         const ymin = d3.min( self.aggregated_data, self.yvalue );
         const ymax = d3.max( self.aggregated_data, self.yvalue );
-        self.yscale.domain([ymin, ymax]);
+        self.yscale.domain([ymin-100, ymax]);
 
         self.render();
     }

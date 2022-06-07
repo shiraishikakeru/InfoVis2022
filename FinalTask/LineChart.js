@@ -7,7 +7,8 @@ class LineChart {
             margin: config.margin || {top:10, right:10, bottom:50, left:90},
             title: config.title || '',
             xlabel: config.xlabel || '',
-            ylabel: config.ylabel || ''
+            ylabel: config.ylabel || '',
+            cscale: config.cscale
         };
         this.data = data;
         this.init();
@@ -73,9 +74,9 @@ class LineChart {
     update() {
         let self = this;
 
-        self.cvalue = d => d.kind;
         self.xvalue = d => d.date;
         self.yvalue = d => d.value;
+        self.cvalue = d => d.kind;
 
         const xmin = d3.min(self.data, self.xvalue);
         const xmax = d3.max(self.data, self.xvalue);
@@ -99,6 +100,7 @@ class LineChart {
         self.chart.append("path")
             .attr('d', self.line(self.data))
             .attr('stroke', d => self.config.cscale(self.cvalue(d)))
+            .attr('fill', 'none')
             .attr('stroke-width', line_width);
 
         const circle_radius = 5;
@@ -111,6 +113,7 @@ class LineChart {
             .attr('r', circle_radius)
             .attr('fill', d => self.config.cscale(self.cvalue(d)));
 
+        
         self.xaxis_group.call(self.xaxis);
         self.yaxis_group.call(self.yaxis);
     }

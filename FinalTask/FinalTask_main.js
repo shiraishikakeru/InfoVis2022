@@ -8,7 +8,6 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/FinalTask/data_final.csv")
         input_data = data;
         input_data.forEach( d => {
             d.date = +d.date;
-            d.kind = d.kind;
             d.value = +d.value;
         });
 
