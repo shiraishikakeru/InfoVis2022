@@ -70,7 +70,7 @@ class BarChart {
 
         const data_map = d3.nest()
             .key(function(d){ return d.region; })
-            .rollup(function(v){ return d3.sum(v, function(d){ return d.cancer;});})
+            .rollup(function(v){ return d3.mean(v, function(d){ return d.smoke;});})
             .entries(self.data);
         self.aggregated_data = Array.from(data_map);
 

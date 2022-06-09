@@ -19,8 +19,8 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/FinalTask/data_final.csv")
             width: 512,
             height: 512,
             margin: {top:10, right:10, bottom:50, left:90},
-            xlabel: 'Smoking rate [%]',
-            ylabel: 'Cancer mortality rate [%]',
+            xlabel: 'Cancer mortality rate [%]',
+            ylabel: 'Smoking rate [%]',
             cscale: color_scale
         }, input_data );
         scatter_plot.update();
@@ -31,7 +31,7 @@ d3.csv("https://shiraishikakeru.github.io/InfoVis2022/FinalTask/data_final.csv")
             height: 512,
             margin: {top:10, right:10, bottom:50, left:90},
             xlabel: 'Region',
-            ylabel: 'Cancer mortaluty rate [%]',
+            ylabel: 'Average smoking rate [%]',
             cscale: color_scale
         }, input_data );
         bar_chart.update();
