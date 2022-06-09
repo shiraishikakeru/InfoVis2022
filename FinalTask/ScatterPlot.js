@@ -1,4 +1,4 @@
-class BubbleChart {
+class ScatterPlot {
 
     constructor( config, data ) {
         this.config = {
@@ -31,7 +31,7 @@ class BubbleChart {
             .range( [0, self.inner_width] );
 
         self.yscale = d3.scaleLinear()
-            .range( [0, self.inner_height] );
+            .range( [self.inner_height, 0] );
 
         self.xaxis = d3.axisBottom( self.xscale )
             .ticks(3)
@@ -71,9 +71,8 @@ class BubbleChart {
         let self = this;
 
         self.cvalue = d => d.region;
-        self.xvalue = d => d.population*1000;
-        self.yvalue = d => d.bed;
-        self.rvalue = d => d.infected/1000;
+        self.xvalue = d => d.cancer;
+        self.yvalue = d => d.smoke;
 
         const xmin = d3.min( self.data, self.xvalue );
         const xmax = d3.max( self.data, self.xvalue );
@@ -82,11 +81,6 @@ class BubbleChart {
         const ymin = d3.min( self.data, self.yvalue );
         const ymax = d3.max( self.data, self.yvalue );
         self.yscale.domain( [ymax, ymin] );
-
-        this.l = [
-            {x:xmin, y:ymin},
-            {x:xmax, y:ymax}
-        ];
 
         self.render();
     }
@@ -98,18 +92,18 @@ class BubbleChart {
             .data(self.data)
             .join('circle');
 
+        const circle_radius = 5;
         circles
-            .attr("r", d => self.rvalue(d) )
+            .attr("r", circle_radius )
             .attr("cx", d => self.xscale( self.xvalue(d) ) )
             .attr("cy", d => self.yscale( self.yvalue(d) ) )
-            .attr("fill", d => self.config.cscale( self.cvalue(d) ) )
-            .style("opacity", 0.7);
+            .attr("fill", d => self.config.cscale( self.cvalue(d) ) );
 
         circles
             .on('mouseover', (e,d) => {
                 d3.select('#tooltip')
                     .style('opacity', 1)
-                    .html(`<div class="tooltip-label">${d.prefecture}</div>Population:${d.population*1000}<br>Bed:${d.bed}<br>Infected:${d.infected}`);
+                    .html(`<div class="tooltip-label">${d.prefecture}</div>(${d.cancer}, ${d.smoke})`);
             })
             .on('mousemove', (e) => {
                 const padding = 10;
@@ -127,16 +121,5 @@ class BubbleChart {
 
         self.yaxis_group
             .call( self.yaxis );
-        
-        const line = d3.line()
-            .x(d => self.xscale(d.x))
-            .y(d => self.yscale(d.y));
-        
-        /*
-        self.chart.append('path')
-            .attr('d', line(self.l))
-            .attr('stroke', 'black')
-            .attr('fill', 'none');
-        */
     }
 }

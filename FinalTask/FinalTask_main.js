@@ -1,30 +1,29 @@
 let input_data;
-let bubble_chart;
+let scatter_plot;
 let bar_chart;
 let filter = [];
 
-d3.csv("https://gaku-shimizu.github.io/InfoVis2021/FinalTask/data_final.csv")
+d3.csv("https://shiraishikakeru.github.io/InfoVis2022/FinalTask/data_final.csv")
     .then( data => {
         input_data = data;
         input_data.forEach( d => {
-            d.population = +d.population;
-            d.bed = +d.bed;
-            d.infected = +d.infected;
+            d.cancer = +d.cancer;
+            d.smoke = +d.smoke;
         });
 
         const color_scale = d3.scaleOrdinal( d3.schemeCategory10 );
         color_scale.domain(['Hokkaido/Tohoku','Kanto','Chubu','Kinki','Chugoku','Shikoku','Kyusyu/Okinawa']);
 
-        bubble_chart = new BubbleChart( {
-            parent: '#drawing_region_bubblechart',
+        scatter_plot = new ScatterPlot( {
+            parent: '#drawing_region_scatterplot',
             width: 512,
             height: 512,
             margin: {top:10, right:10, bottom:50, left:90},
-            xlabel: 'Population',
-            ylabel: 'Number of Beds',
+            xlabel: 'Cancer',
+            ylabel: 'Smoker',
             cscale: color_scale
         }, input_data );
-        bubble_chart.update();
+        scatter_plot.update();
 
         bar_chart = new BarChart( {
             parent: '#drawing_region_barchart',
@@ -32,7 +31,7 @@ d3.csv("https://gaku-shimizu.github.io/InfoVis2021/FinalTask/data_final.csv")
             height: 512,
             margin: {top:10, right:10, bottom:50, left:90},
             xlabel: 'Region',
-            ylabel: 'Number of Infected People',
+            ylabel: 'Smoker',
             cscale: color_scale
         }, input_data );
         bar_chart.update();
@@ -43,10 +42,10 @@ d3.csv("https://gaku-shimizu.github.io/InfoVis2021/FinalTask/data_final.csv")
 
 function Filter() {
     if ( filter.length == 0 ) {
-        bubble_chart.data = input_data;
+        scatter_plot.data = input_data;
     }
     else {
-        bubble_chart.data = input_data.filter( d => filter.includes( d.region ) );
+        scatter_plot.data = input_data.filter( d => filter.includes( d.region ) );
     }
-    bubble_chart.update();
+    scatter_plot.update();
 }

@@ -2,9 +2,9 @@ class BarChart {
     constructor (config, data) {
         this.config = {
             parent: config.parent,
-            width: config.width || 256,
-            height: config.height || 256,
-            margin: config.margin || {top:10, right:10, bottom:10, left:10},
+            width: config.width || 512,
+            height: config.height || 512,
+            margin: config.margin || {top:10, right:10, bottom:50, left:90},
             xlabel: config.xlabel || '',
             ylabel: config.ylabel || '',
             cscale: config.cscale
@@ -35,7 +35,7 @@ class BarChart {
             .range([self.inner_height, 0]);
 
         self.xaxis = d3.axisBottom(self.xscale)
-            .ticks(['setosa','versicolor','virginica'])
+            .ticks(['Hokkaido/Tohoku','Kanto','Chubu','Kinki','Chugoku','Shikoku','Kyusyu/Okinawa'])
             .tickSizeOuter(0);
 
         self.yaxis = d3.axisLeft(self.yscale)
@@ -70,7 +70,7 @@ class BarChart {
 
         const data_map = d3.nest()
             .key(function(d){ return d.region; })
-            .rollup(function(v){ return d3.sum(v, function(d){ return d.infected;});})
+            .rollup(function(v){ return d3.sum(v, function(d){ return d.smoke;});})
             .entries(self.data);
         self.aggregated_data = Array.from(data_map);
 
