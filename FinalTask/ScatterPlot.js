@@ -3,9 +3,9 @@ class ScatterPlot {
     constructor( config, data ) {
         this.config = {
             parent: config.parent,
-            width: config.width || 256,
-            height: config.height || 256,
-            margin: config.margin || {top:10, right:10, bottom:10, left:10},
+            width: config.width || 512,
+            height: config.height || 512,
+            margin: config.margin || {top:10, right:10, bottom:50, left:90},
             xlabel: config.xlabel || '',
             ylabel: config.ylabel || '',
             cscale: config.cscale
@@ -71,8 +71,8 @@ class ScatterPlot {
         let self = this;
 
         self.cvalue = d => d.region;
-        self.xvalue = d => d.cancer;
-        self.yvalue = d => d.smoke;
+        self.xvalue = d => d.smoke;
+        self.yvalue = d => d.cancer;
 
         const xmin = d3.min( self.data, self.xvalue );
         const xmax = d3.max( self.data, self.xvalue );
@@ -103,7 +103,7 @@ class ScatterPlot {
             .on('mouseover', (e,d) => {
                 d3.select('#tooltip')
                     .style('opacity', 1)
-                    .html(`<div class="tooltip-label">${d.prefecture}</div>(${d.cancer}, ${d.smoke})`);
+                    .html(`<div class="tooltip-label">${d.prefecture}</div>(${d.smoke}, ${d.cancer})`);
             })
             .on('mousemove', (e) => {
                 const padding = 10;
